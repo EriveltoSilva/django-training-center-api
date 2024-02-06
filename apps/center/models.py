@@ -7,7 +7,7 @@ RACE=(('B','BLACK'), ('W', 'WHITE'))
 CIVIL_STATUS=(('S','SINGLE'), ('M', 'MARRIED'),('D','DIVORCED'),('W','WIDOWER'))
 class Student(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    bi = models.CharField(max_length=14, null=False, blank=False)
+    bi = models.CharField(max_length=14, null=False, blank=False, unique=True)
     birthday = models.DateField(null=False, blank=False)
     gender = models.CharField(max_length=1, choices=GENDER, default='M')
     race = models.CharField(max_length=1, choices=RACE, default='B')
@@ -25,12 +25,12 @@ class Student(models.Model):
     
 class Teacher(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    bi = models.CharField(max_length=14, null=False, blank=False)
+    bi = models.CharField(max_length=14, null=False, blank=False, unique=True)
     birthday = models.DateField(null=False, blank=False)
     gender = models.CharField(max_length=1, choices=GENDER, default='M')
     race = models.CharField(max_length=1, choices=RACE, default='B')
     civil_status = models.CharField(max_length=1, choices=CIVIL_STATUS, default='S')
-    natianality = models.CharField(max_length=100, null=False, blank=False)
+    nationality = models.CharField(max_length=100, null=False, blank=False)
     formation_area = models.CharField(max_length=100, null=False, blank=False)  
     formation_title = models.CharField(max_length=100, null=False, blank=False)   
     created_at = models.DateTimeField(auto_now=True)    
@@ -44,7 +44,7 @@ class Teacher(models.Model):
     
 
 class Course(models.Model):
-    code = models.CharField(max_length=10, null=False, blank=False)
+    code = models.CharField(max_length=10, null=False, blank=False, unique=True)
     description = models.CharField(max_length=255,null=False, blank=False)
     duraction = models.IntegerField(null=False, blank=False)
     duraction_unit = models.CharField(max_length=10,null=False, blank=False)
@@ -56,7 +56,7 @@ class Course(models.Model):
 
 
 class Room(models.Model):
-    name = models.CharField(max_length=50, null=False, blank=False)
+    name = models.CharField(max_length=50, null=False, blank=False, unique=True)
     number = models.IntegerField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now=True)    
     updated_at = models.DateTimeField(auto_now_add=True) 
