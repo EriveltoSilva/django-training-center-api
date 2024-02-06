@@ -44,10 +44,11 @@ class Teacher(models.Model):
     
 
 class Course(models.Model):
+    DURACTION_UNIT = (('D','DAYS'),('W','WEEKS'),('M','MONTHS'),('Y','YEARS'),)
     code = models.CharField(max_length=10, null=False, blank=False, unique=True)
     description = models.CharField(max_length=255,null=False, blank=False)
     duraction = models.IntegerField(null=False, blank=False)
-    duraction_unit = models.CharField(max_length=10,null=False, blank=False)
+    duraction_unit = models.CharField(max_length=10,choices=DURACTION_UNIT,default="M",null=False, blank=False)
     created_at = models.DateTimeField(auto_now=True)    
     updated_at = models.DateTimeField(auto_now_add=True) 
     

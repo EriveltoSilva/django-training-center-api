@@ -33,13 +33,23 @@ class RoomSerializer(serializers.ModelSerializer):
         model = models.Room
         fields = ['id','name','number',]
 
-class ClassRoomSerializer(serializers.ModelSerializer):
+# class ClassRoomSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.ClassRoom
+#         fields = ['id','course','teacher',
+#                   'room','status','time_start',
+#                   'time_end']
+
+class OnlyListClassRoomsSerializer(serializers.ModelSerializer):
+    course = serializers.ReadOnlyField(source='course.description')
+    teacher = serializers.ReadOnlyField(source='teacher.get_full_name')
+    room = serializers.ReadOnlyField(source='room.name')
     class Meta:
         model = models.ClassRoom
         fields = ['id','course','teacher',
                   'room','status','time_start',
                   'time_end']
-
+        
 class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Registration
@@ -51,3 +61,4 @@ class NoteSerializer(serializers.ModelSerializer):
         model = models.Note
         fields = ['id','teacher','class_room',
                   'student','value','unit']
+        
