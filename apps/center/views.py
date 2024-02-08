@@ -20,26 +20,36 @@ class StudentViewset(viewsets.ModelViewSet):
     ''' Show all Students '''
     queryset= models.Student.objects.all()
     serializer_class = serializers.StudentSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class TeacherViewset(viewsets.ModelViewSet):
     ''' Show all Teachers '''
     queryset= models.Teacher.objects.all()
     serializer_class = serializers.TeacherSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class CourseViewset(viewsets.ModelViewSet):
     ''' Show all Courses '''
     queryset = models.Course.objects.all()
     serializer_class= serializers.CourseSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes  = [IsAuthenticated]
 
 class RoomViewset(viewsets.ModelViewSet):
     ''' Show all Rooms '''
     queryset = models.Room.objects.all()
     serializer_class= serializers.RoomSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # class ClassRoomViewset(viewsets.ModelViewSet):
 #     ''' Show all ClassRooms '''
 #     queryset = models.ClassRoom.objects.all()
 #     serializer_class= serializers.ClassRoomSerializer
+#     authentication_classes = [BasicAuthentication]
+#     permission_classes = [IsAuthenticated]
 
 class OnlyListClassRoomViewset(ListAPIView):
     ''' Show all ClassRooms '''
@@ -51,9 +61,11 @@ class RegistrationViewset(viewsets.ModelViewSet):
     ''' Show all Registrations '''
     queryset = models.Registration.objects.all()
     serializer_class= serializers.RegistrationSerializer
-
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 class NoteViewset(viewsets.ModelViewSet):
     ''' Show all Notes '''
     queryset = models.Note.objects.all()
     serializer_class= serializers.NoteSerializer
-
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
